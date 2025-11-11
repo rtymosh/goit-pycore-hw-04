@@ -231,13 +231,13 @@
 # from commands_handler import add_contact, change_contact, show_phone, show_all  # noqa, do not realize import modules now witnin functions
 
 
-def parse_input(user_input):
+def parse_input(user_input):  # parses user input into command and arguments
     cmd, *args = user_input.split()
     cmd = cmd.strip().lower()
     return cmd, *args
 
 
-def add_contact(args, contacts) -> str:  # "add username phone"
+def add_contact(args, contacts) -> str:  # cmd: "add username phone"
     try:
         name, phone = args
         contacts[name] = phone
@@ -246,7 +246,7 @@ def add_contact(args, contacts) -> str:  # "add username phone"
         return "Error: Not valid number of arguments. Please provide name and phone number only."
 
 
-def change_contact(args, contacts) -> str:  # "change username phone"
+def change_contact(args, contacts) -> str:  # cmd: "change username phone"
     try:
         name, phone = args
         if name in contacts:
@@ -258,7 +258,7 @@ def change_contact(args, contacts) -> str:  # "change username phone"
         return "Error: Not valid number of arguments. Please provide name and phone number only."
 
 
-def show_phone(args, contacts) -> str:  # "phone username"
+def show_phone(args, contacts) -> str:  # cmd: "phone username"
     try:
         name = args[0]
         if name in contacts:
@@ -269,7 +269,7 @@ def show_phone(args, contacts) -> str:  # "phone username"
         return "Error: Please provide a contact name."
 
 
-def show_all(contacts) -> str:  # "all"
+def show_all(contacts) -> str:  # cmd: "all"
     if contacts:
         return "\n".join(f"{name}: {phone}" for name, phone in contacts.items())
     else:
